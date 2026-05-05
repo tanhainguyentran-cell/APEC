@@ -294,7 +294,7 @@
         <div class="header">
             <div class="pre-title">1. Nhóm Dữ liệu Vị thế Toàn cầu & Cấu trúc Nhân khẩu</div>
             <h1 class="title">Biểu đồ 1.1: Phân bổ Trọng số GDP và Quy mô Dân số APEC trong Tương quan Toàn cầu</h1>
-            <p class="subtitle"><b>Phân tích xu hướng:</b> Dữ liệu cho thấy sự bất đối xứng rõ rệt giữa quy mô kinh tế và nhân khẩu học tại các tiểu vùng. Trong khi Châu Mỹ và Đông Bắc Á đóng góp tỷ trọng áp đảo vào tổng GDP thực của toàn khối (nhờ năng suất và công nghệ vượt trội), thì lực lượng dân số lại phân bổ đậm đặc tại Đông Bắc Á và Đông Nam Á. Điều này phản ánh tiềm năng dịch chuyển động lực tăng trưởng dài hạn về phía châu Á, nơi sở hữu thị trường tiêu dùng khổng lồ và lực lượng lao động dồi dào.</p>
+            <p class="subtitle"><b>Phân tích xu hướng:</b> Dữ liệu cho thấy sự bất đối xứng rõ rệt giữa quy mô kinh tế và nhân khẩu học tại các tiểu vùng. Trong khi Châu Mỹ và Đông Bắc Á đóng góp tỷ trọng áp đảo vào tổng GDP thực của toàn khối (nhờ năng suất và công nghệ vượt trội), thì lực lượng dân số lại phân bổ đậm đặc tại Đông Bắc Á và Đông Nam Á. Điều này phản ánh tiềm năng dịch chuyển động lực tăng trưởng dài hạn về phía châu châu Á, nơi sở hữu thị trường tiêu dùng khổng lồ và lực lượng lao động dồi dào.</p>
         </div>
         
         <div class="canvas-container" style="display: flex; flex-direction: column; gap: 8px;">
@@ -1041,12 +1041,28 @@
         <div class="header">
             <div class="pre-title">5. Nhóm Dữ liệu Tài chính Xanh</div>
             <h1 class="title">Biểu đồ 5.3: Sự phân hóa Chi phí Vốn Bình quân Gia quyền (WACC) của các Dự án Năng lượng Tái tạo</h1>
-            <p class="subtitle"><b>Phân tích xu hướng:</b> [Nhập nội dung phân tích chi tiết cho biểu đồ 5.3 tại đây...]</p>
+            <p class="subtitle"><b>Phân tích xu hướng:</b> Dữ liệu cho thấy "Khoảng cách rủi ro tài chính" giữa các nước phát triển và đang phát triển trong APEC vẫn duy trì ở mức cao (xấp xỉ 280 bps). Tại nhóm phát triển (Nhật Bản, Mỹ, Singapore...), dòng vốn rẻ giúp WACC duy trì ổn định dưới 7%. Ngược lại, nhóm đang phát triển phải đối mặt với WACC cao từ 8.5% - 16%, cản trở khả năng cạnh tranh của các dự án năng lượng tái tạo khi chi phí vay mượn chiếm tỷ trọng lớn.</p>
         </div>
-        <div class="canvas-container">
-            <div class="placeholder-box">Vùng chờ: Cập nhật mã nguồn và số liệu Biểu đồ 5.3 vào đây</div>
+        <div class="canvas-container" style="display: flex; gap: 20px; flex-grow: 1; width: 100%; min-height: 0;">
+            <div style="flex: 1; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1;">
+                <h3 style="margin: 0 0 16px 0; font-size: 13px; color: #134675; text-align: center;">Chênh lệch Chi phí Vốn (Developed vs Developing)</h3>
+                <div style="flex-grow: 1; position: relative;">
+                    <canvas id="apecChart5_3_Left"></canvas>
+                </div>
+            </div>
+            
+            <div style="flex: 2; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1;">
+                <h3 style="margin: 0 0 12px 0; font-size: 13px; color: #134675; text-align: center;">WACC Năng lượng Tái tạo Dự phóng 2026* (%)</h3>
+                <div style="display: flex; justify-content: center; gap: 16px; font-size: 11px; color: #475569; font-weight: 600; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #134675; margin-right: 4px; border-radius: 2px;"></span>Nhóm Phát triển</div>
+                    <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #FF6B6B; margin-right: 4px; border-radius: 2px;"></span>Nhóm Đang phát triển</div>
+                </div>
+                <div style="flex-grow: 1; position: relative;">
+                    <canvas id="apecChart5_3_Right"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="footnote">* Số liệu được DSC và Economia tổng hợp</div>
+        <div class="footnote"></div>
     </div>
 
     <div class="chart-wrapper">
@@ -3278,6 +3294,113 @@
                     tooltip: {
                         backgroundColor: 'rgba(15, 32, 39, 0.95)', titleFont: { size: 13, weight: '700' }, bodyFont: { size: 12 }, padding: 10,
                         callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} bps` }
+                    }
+                }
+            }
+        });
+
+        const ctx5_3_Left = document.getElementById('apecChart5_3_Left').getContext('2d');
+        new Chart(ctx5_3_Left, {
+            type: 'line',
+            data: {
+                labels: ['2024', '2025', '2026*'],
+                datasets: [
+                    {
+                        label: 'Đang phát triển (%)',
+                        data: [8.54, 8.68, 9.14],
+                        borderColor: '#FF6B6B', backgroundColor: '#FF6B6B',
+                        borderWidth: 3, pointRadius: 5, yAxisID: 'y', order: 1
+                    },
+                    {
+                        label: 'Phát triển (%)',
+                        data: [5.71, 6.04, 6.33],
+                        borderColor: '#134675', backgroundColor: '#134675',
+                        borderWidth: 3, pointRadius: 5, yAxisID: 'y', order: 2
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Khoảng cách (bps)',
+                        data: [283, 264, 281],
+                        backgroundColor: '#CBD5E1', borderRadius: 4, barPercentage: 0.4,
+                        yAxisID: 'y1', order: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 11, weight: '600' } } },
+                    y: { 
+                        position: 'left', min: 4, max: 10, 
+                        title: { display: true, text: 'Trung bình WACC (%)', font: {size:11, weight:'600'}, color: '#64748B' },
+                        grid: { color: '#E2E8F0', borderDash: [5, 5] }, border: { display: false },
+                        ticks: { font: { size: 10 }, callback: v => v + '%' } 
+                    },
+                    y1: { 
+                        position: 'right', min: 0, max: 400, 
+                        title: { display: true, text: 'Khoảng cách (bps)', font: {size:11, weight:'600'}, color: '#64748B' },
+                        grid: { display: false }, border: { display: false },
+                        ticks: { font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: {size: 11} } },
+                    datalabels: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 32, 39, 0.95)', titleFont: { size: 13, weight: '700' }, bodyFont: { size: 12 }, padding: 10,
+                        callbacks: { 
+                            label: (ctx) => {
+                                if (ctx.datasetIndex === 2) return `${ctx.dataset.label}: ${ctx.raw}`;
+                                return `${ctx.dataset.label}: ${ctx.raw}%`;
+                            } 
+                        }
+                    }
+                }
+            }
+        });
+
+        const rawData5_3_R = [
+            { e: 'Nga', v: 16.0, t: 'D' }, { e: 'Papua N.G', v: 12.5, t: 'D' },
+            { e: 'Indonesia', v: 9.6, t: 'D' }, { e: 'Việt Nam', v: 9.2, t: 'D' },
+            { e: 'Mexico', v: 9.1, t: 'D' }, { e: 'Philippines', v: 8.8, t: 'D' },
+            { e: 'Peru', v: 8.2, t: 'D' }, { e: 'Thái Lan', v: 7.5, t: 'D' },
+            { e: 'Úc', v: 7.4, t: 'A' }, { e: 'Chile', v: 7.3, t: 'D' },
+            { e: 'New Zealand', v: 7.1, t: 'A' }, { e: 'Malaysia', v: 7.0, t: 'D' },
+            { e: 'Brunei', v: 7.0, t: 'D' }, { e: 'Hoa Kỳ', v: 6.8, t: 'A' },
+            { e: 'Canada', v: 6.4, t: 'A' }, { e: 'Hàn Quốc', v: 6.0, t: 'A' },
+            { e: 'Đài Bắc TH', v: 5.9, t: 'A' }, { e: 'Hồng Kông', v: 5.8, t: 'A' },
+            { e: 'Singapore', v: 5.6, t: 'A' }, { e: 'Nhật Bản', v: 5.0, t: 'A' },
+            { e: 'Trung Quốc', v: 4.4, t: 'D' }
+        ].sort((a,b) => b.v - a.v);
+
+        const ctx5_3_Right = document.getElementById('apecChart5_3_Right').getContext('2d');
+        new Chart(ctx5_3_Right, {
+            type: 'bar',
+            data: {
+                labels: rawData5_3_R.map(d => d.e),
+                datasets: [{
+                    data: rawData5_3_R.map(d => d.v),
+                    backgroundColor: rawData5_3_R.map(d => d.t === 'A' ? '#134675' : '#FF6B6B'),
+                    borderRadius: 4, barThickness: 8
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+                layout: { padding: { right: 35 } },
+                scales: {
+                    x: { grid: { color: (ctx) => ctx.tick.value === 0 ? '#94A3B8' : '#F1F5F9', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }, ticks: { font: {size: 10}, callback: v => v + '%' } },
+                    y: { grid: { display: false }, ticks: { font: { size: 9.5, weight: '600'}, color: '#475569' }, border: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    datalabels: { 
+                        anchor: 'end', align: 'right', offset: 4,
+                        color: (ctx) => rawData5_3_R[ctx.dataIndex].t === 'A' ? '#134675' : '#FF6B6B',
+                        font: { size: 9, weight: 'bold' }, formatter: v => v.toFixed(1) + '%' 
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 32, 39, 0.95)', titleFont: { size: 13, weight: '700' }, bodyFont: { size: 12 }, padding: 10,
+                        callbacks: { label: (ctx) => `${ctx.raw}%` }
                     }
                 }
             }
