@@ -994,8 +994,7 @@
             <h1 class="title">Biểu đồ 5.1: Tổng Giá trị Phát hành và Cơ cấu Tiền tệ của Dòng Trái phiếu Xanh, Xã hội và Bền vững</h1>
             <p class="subtitle"><b>Phân tích xu hướng:</b> [Nhập nội dung phân tích chi tiết cho biểu đồ 5.1 tại đây...]</p>
         </div>
-        <div class="canvas-container">
-            <div class="canvas-container" style="display: flex; gap: 20px; flex-grow: 1; width: 100%; min-height: 0;">
+        <div class="canvas-container" style="display: flex; gap: 20px; flex-grow: 1; width: 100%; min-height: 0;">
             <div style="flex: 1; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1;">
                 <h3 style="margin: 0 0 16px 0; font-size: 13px; color: #134675; text-align: center;">Tổng Giá trị Phát hành toàn APEC (Tỷ USD)</h3>
                 <div style="flex-grow: 1; position: relative;">
@@ -1015,7 +1014,6 @@
                     <canvas id="apecChart5_1_Right"></canvas>
                 </div>
             </div>
-        </div>
         </div>
         <div class="footnote">* Số liệu được DSC và Economia tổng hợp</div>
     </div>
@@ -3093,10 +3091,7 @@
                 }
             }
         });
-// ==========================================
-        // CẤU HÌNH BIỂU ĐỒ 5.1 (TRÁI PHIẾU XANH)
-        // ==========================================
-        
+
         const ctx5_1_Left = document.getElementById('apecChart5_1_Left').getContext('2d');
         new Chart(ctx5_1_Left, {
             type: 'bar',
@@ -3205,6 +3200,7 @@
                 }
             }
         });
+
         document.querySelectorAll('.footnote').forEach(el => {
             el.innerHTML = `
                 <span style="color: #134675; font-weight: 600;">* Các chỉ số có đánh dấu (*) đại diện cho số liệu dự phóng (Forecast)</span>
