@@ -1025,22 +1025,24 @@
             <p class="subtitle"><b>Phân tích xu hướng:</b> Dữ liệu cho thấy hiện tượng "Greenium" (chênh lệch lợi suất âm) đang lan rộng và khắc sâu tại hầu hết các nền kinh tế APEC. Các thị trường mới nổi như Chile, Indonesia, Việt Nam và Trung Quốc ghi nhận mức Greenium sâu nhất (từ -7.5 đến -11.2 bps vào năm 2026), phản ánh nhu cầu vượt trội của giới đầu tư quốc tế đối với tài sản xanh tại các khu vực này. Trong khi đó, các thị trường phát triển (Mỹ, Nhật, Úc) có mức chênh lệch hẹp hơn do thanh khoản dồi dào và thị trường trái phiếu đã bão hòa.</p>
         </div>
         
-        <!-- Đã thêm min-height: 0; vào dòng dưới -->
-        <div class="canvas-container" style="position: relative; width: 100%; flex-grow: 1; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1; min-height: 0;">
-            <div style="display: flex; justify-content: center; gap: 16px; font-size: 11px; color: #475569; font-weight: 600; padding-bottom: 8px;">
+        <!-- Đã sửa: Thêm flex: 1 1 0%; và box-sizing: border-box; -->
+        <div class="canvas-container" style="position: relative; width: 100%; flex: 1 1 0%; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1; box-sizing: border-box; min-height: 0;">
+            
+            <!-- Đã sửa: Thêm flex-shrink: 0; để phần chú thích không bị ép nhỏ -->
+            <div style="display: flex; justify-content: center; gap: 16px; font-size: 11px; color: #475569; font-weight: 600; padding-bottom: 8px; flex-shrink: 0;">
                 <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #b0ebfb; margin-right: 4px; border-radius: 2px;"></span>2024</div>
                 <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #acfde1; margin-right: 4px; border-radius: 2px;"></span>2025</div>
                 <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #134675; margin-right: 4px; border-radius: 2px;"></span>2026*</div>
             </div>
             
-            <!-- Đã thêm min-height: 0; vào dòng dưới -->
-            <div style="flex-grow: 1; position: relative; min-height: 0;">
+            <!-- Đã sửa: Thêm flex: 1 1 0%; và width: 100%; -->
+            <div style="position: relative; flex: 1 1 0%; min-height: 0; width: 100%;">
                 <canvas id="apecChart5_2"></canvas>
             </div>
+            
         </div>
         <div class="footnote"></div>
     </div>
-
     <div class="chart-wrapper">
         <div class="header">
             <div class="pre-title">5. Nhóm Dữ liệu Tài chính Xanh</div>
