@@ -1097,10 +1097,26 @@
         <div class="header">
             <div class="pre-title">5. Nhóm Dữ liệu Tài chính Xanh</div>
             <h1 class="title">Biểu đồ 5.5: Quy mô Vốn Mồi và Tỷ lệ Bảo lãnh Tín dụng của Chính phủ đối với Dự án Chuyển đổi Năng lượng</h1>
-            <p class="subtitle"><b>Phân tích xu hướng:</b> [Nhập nội dung phân tích chi tiết cho biểu đồ 5.5 tại đây...]</p>
+            <p class="subtitle"><b>Phân tích xu hướng:</b> Dữ liệu cho thấy sự phân hóa mang tính cấu trúc. Các nền kinh tế phát triển duy trì quy mô vốn mồi lớn (dự phóng 174,75 Tỷ USD năm 2026) nhưng chỉ cần tỷ lệ bảo lãnh tín dụng mức trung bình (55-85%) nhờ hệ thống tài chính hoàn thiện. Ngược lại, nhóm đang phát triển dù có quy mô vốn nhỏ hơn (111,35 Tỷ USD) nhưng chính phủ phải cam kết tỷ lệ bảo lãnh rất cao (75-98%), cá biệt như Papua New Guinea, Philippines lên tới 95-98% để thu hút dòng vốn quốc tế vào các dự án rủi ro.</p>
         </div>
-        <div class="canvas-container">
-            <div class="placeholder-box">Vùng chờ: Cập nhật mã nguồn và số liệu Biểu đồ 5.5 vào đây</div>
+        <div class="canvas-container" style="display: flex; gap: 20px; min-height: 0;">
+            <div style="flex: 1; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1;">
+                <h3 style="margin: 0 0 16px 0; font-size: 13px; color: #134675; text-align: center;">Xu hướng Vốn & Tỷ lệ Bảo lãnh (2024-2026*)</h3>
+                <div style="flex-grow: 1; position: relative;">
+                    <canvas id="apecChart5_5_Left"></canvas>
+                </div>
+            </div>
+            
+            <div style="flex: 1.5; display: flex; flex-direction: column; background-color: #F8FAFC; border-radius: 12px; padding: 16px; border: 1px solid #CBD5E1;">
+                <h3 style="margin: 0 0 12px 0; font-size: 13px; color: #134675; text-align: center;">Ma trận Vốn Mồi & Rủi ro Tín dụng Dự phóng (2026*)</h3>
+                <div style="display: flex; justify-content: center; gap: 16px; font-size: 11px; color: #475569; font-weight: 600; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #134675; margin-right: 4px; border-radius: 50%;"></span>Nhóm Phát triển</div>
+                    <div style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #FF6B6B; margin-right: 4px; border-radius: 50%;"></span>Nhóm Đang phát triển</div>
+                </div>
+                <div style="flex-grow: 1; position: relative;">
+                    <canvas id="apecChart5_5_Right"></canvas>
+                </div>
+            </div>
         </div>
         <div class="footnote">* Số liệu được DSC và Economia tổng hợp</div>
     </div>
@@ -3517,6 +3533,137 @@
                     tooltip: {
                         backgroundColor: 'rgba(15, 32, 39, 0.95)', titleFont: { size: 13, weight: '700' }, bodyFont: { size: 12 }, padding: 10,
                         callbacks: { label: (ctx) => `${ctx.raw}%` }
+                    }
+                }
+            }
+        });
+
+        const ctx5_5_Left = document.getElementById('apecChart5_5_Left').getContext('2d');
+        new Chart(ctx5_5_Left, {
+            data: {
+                labels: ['2024', '2025', '2026*'],
+                datasets: [
+                    {
+                        type: 'line', label: 'Bảo lãnh: Phát triển (%)',
+                        data: [60, 65, 70],
+                        borderColor: '#134675', backgroundColor: '#134675',
+                        borderWidth: 2, pointRadius: 4, yAxisID: 'y1', order: 1
+                    },
+                    {
+                        type: 'line', label: 'Bảo lãnh: Đang PT (%)',
+                        data: [80, 84, 86.5],
+                        borderColor: '#FF6B6B', backgroundColor: '#FF6B6B',
+                        borderWidth: 2, pointRadius: 4, yAxisID: 'y1', order: 2
+                    },
+                    {
+                        type: 'bar', label: 'Vốn: Phát triển (Tỷ USD)',
+                        data: [146.65, 160.05, 174.75],
+                        backgroundColor: 'rgba(19, 70, 117, 0.7)', borderRadius: 4,
+                        yAxisID: 'y', order: 3
+                    },
+                    {
+                        type: 'bar', label: 'Vốn: Đang PT (Tỷ USD)',
+                        data: [84.59, 97.0, 111.35],
+                        backgroundColor: 'rgba(255, 107, 107, 0.7)', borderRadius: 4,
+                        yAxisID: 'y', order: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true, grid: {display: false}, ticks: {font: {size: 11, weight: '600'}} },
+                    y: { 
+                        stacked: true, position: 'left',
+                        title: { display: true, text: 'Vốn mồi (Tỷ USD)', font: {size:10, weight:'600'}, color:'#64748B' },
+                        grid: {color: '#E2E8F0'}, ticks: {font: {size: 10}}
+                    },
+                    y1: { 
+                        position: 'right', min: 40, max: 100,
+                        title: { display: true, text: 'Tỷ lệ Bảo lãnh (%)', font: {size:10, weight:'600'}, color:'#64748B' },
+                        grid: {display: false}, ticks: {font: {size: 10}}
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: {usePointStyle: true, boxWidth: 8, font: {size: 10}} },
+                    datalabels: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 32, 39, 0.95)', titleFont: { size: 12, weight: '700' }, bodyFont: { size: 12 }, padding: 10
+                    }
+                }
+            }
+        });
+
+        const ctx5_5_Right = document.getElementById('apecChart5_5_Right').getContext('2d');
+        const data5_5_Scatter = [
+            {x: 60, y: 78.5, e: 'USA', g: 'D'}, {x: 70, y: 39.2, e: 'JPN', g: 'D'},
+            {x: 55, y: 15.5, e: 'CAN', g: 'D'}, {x: 60, y: 12.7, e: 'AUS', g: 'D'},
+            {x: 75, y: 16.8, e: 'KOR', g: 'D'}, {x: 55, y: 5.6, e: 'SGP', g: 'D'},
+            {x: 55, y: 2.6, e: 'NZL', g: 'D'}, {x: 70, y: 2.0, e: 'TPE', g: 'D'},
+            {x: 65, y: 1.8, e: 'HKG', g: 'D'},
+            {x: 85, y: 70.4, e: 'CHN', g: 'E'}, {x: 90, y: 9.8, e: 'INA', g: 'E'},
+            {x: 85, y: 6.2, e: 'VIE', g: 'E'}, {x: 75, y: 4.2, e: 'MEX', g: 'E'},
+            {x: 95, y: 4.1, e: 'PHI', g: 'E'}, {x: 80, y: 4.2, e: 'THA', g: 'E'},
+            {x: 75, y: 3.5, e: 'MAS', g: 'E'}, {x: 95, y: 3.0, e: 'CHL', g: 'E'},
+            {x: 90, y: 2.3, e: 'PER', g: 'E'}, {x: 70, y: 2.5, e: 'RUS', g: 'E'},
+            {x: 98, y: 0.6, e: 'PNG', g: 'E'}, {x: 60, y: 0.4, e: 'BRU', g: 'E'}
+        ];
+
+        new Chart(ctx5_5_Right, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Phát triển',
+                        data: data5_5_Scatter.filter(d => d.g === 'D'),
+                        backgroundColor: '#134675', borderColor: '#134675',
+                        pointRadius: 6, pointHoverRadius: 8
+                    },
+                    {
+                        label: 'Đang phát triển',
+                        data: data5_5_Scatter.filter(d => d.g === 'E'),
+                        backgroundColor: '#FF6B6B', borderColor: '#FF6B6B',
+                        pointRadius: 6, pointHoverRadius: 8
+                    }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Tỷ lệ Bảo lãnh Tín dụng 2026* (%)', font: {weight: '600'}, color: '#134675'},
+                        grid: { color: '#F1F5F9' },
+                        ticks: { font: {size: 11}, callback: v => v + '%' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Quy mô Vốn mồi 2026* (Tỷ USD) - Thang Log', font: {weight: '600'}, color: '#134675'},
+                        type: 'logarithmic',
+                        grid: { color: '#F1F5F9' },
+                        ticks: { 
+                            font: {size: 11}, 
+                            callback: function(value, index, values) {
+                                if (value === 0.1 || value === 1 || value === 10 || value === 100) return value;
+                                return null;
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'right', offset: 4,
+                        color: '#475569', font: {size: 9.5, weight: '600'},
+                        formatter: (val) => val.e
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 32, 39, 0.95)',
+                        titleFont: { size: 13, weight: '700' }, bodyFont: { size: 12 }, padding: 10,
+                        callbacks: {
+                            label: (ctx) => {
+                                const d = ctx.raw;
+                                return `${d.e}: Bảo lãnh ${d.x}% | Vốn mồi ${d.y} Tỷ USD`;
+                            }
+                        }
                     }
                 }
             }
